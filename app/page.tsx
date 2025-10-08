@@ -13,7 +13,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-transparent">
       <Navbar />
-      <div className="pt-16 md:pt-20">
+      <div className="pt-8 md:pt-12">
         <HeroSection />
         <GapSection />
         <MeetAivaSection />

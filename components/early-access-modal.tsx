@@ -185,7 +185,7 @@ const userInfo = {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent showCloseButton={false} className="sm:max-w-lg w-full mx-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 text-white p-0 overflow-hidden shadow-2xl">
+        <DialogContent showCloseButton={false} className="sm:max-w-lg w-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 text-white p-0 overflow-hidden shadow-2xl">
           <DialogClose
               className="absolute right-4 top-4 z-50 w-10 h-10 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-slate-700/70 shadow-lg cursor-pointer transition-all duration-200"
               aria-label="Close"
