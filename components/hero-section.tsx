@@ -9,7 +9,7 @@ export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden py-4 px-4">
+    <section className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden py-0 px-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent rounded-full animate-pulse opacity-60"></div>
