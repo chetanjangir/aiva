@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
+import { Sparkles, Mail, Phone, CheckCircle, X } from "lucide-react"
 
 interface EarlyAccessModalProps {
   isOpen: boolean
@@ -184,76 +185,116 @@ const userInfo = {
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent className="sm:max-w-md w-full mx-4 bg-slate-900 border-slate-700 text-white p-0 overflow-hidden">
-          <DialogClose className="text-white hover:text-gray-300" />
+        <DialogContent showCloseButton={false} className="sm:max-w-lg w-full mx-4 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 text-white p-0 overflow-hidden shadow-2xl">
+          <DialogClose
+              className="absolute right-4 top-4 z-50 w-10 h-10 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-slate-700/70 shadow-lg cursor-pointer transition-all duration-200"
+              aria-label="Close"
+            >
+            <X className="w-5 h-5" />
+          </DialogClose>
+          
+          {/* Decorative background elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-400/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl"></div>
+          </div>
+
           {/* Header */}
-          <DialogHeader className="p-6 pb-4 relative">
-            <DialogTitle className="text-2xl md:text-3xl font-bold text-yellow-400 text-left">
-              Get Early Access
-            </DialogTitle>
-            <p className="text-slate-300 text-sm md:text-base text-left mt-2">
+          <DialogHeader className="p-8 pb-6 relative">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="p-2 bg-yellow-400/10 rounded-lg">
+                <Sparkles className="w-6 h-6 text-yellow-400" />
+              </div>
+              <DialogTitle className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+                Get Early Access
+              </DialogTitle>
+            </div>
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
               Be among the first to experience our revolutionary video avatar AI chat. Fill out the form below to get
               notified when we launch.
             </p>
           </DialogHeader>
 
           {/* Form */}
-          <div className="px-6 pb-6">
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="px-8 pb-8 relative">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {/* Email Address */}
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-white text-sm font-medium">
+                <Label htmlFor="email" className="text-slate-200 text-sm font-medium flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-yellow-400" />
                   Email Address *
                 </Label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  ref={emailRef}
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={handleEmailBlur}
-                  required
-                  className="bg-slate-800 border-slate-600 text-white placeholder:text-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 h-12"
-                  placeholder="Enter your email address"
-                />
-                {emailError && <p className="text-red-400 text-sm mt-1">{emailError}</p>}
+                <div className="relative">
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    ref={emailRef}
+                    value={formData.email}
+                    onChange={handleChange}
+                    onBlur={handleEmailBlur}
+                    required
+                    className="bg-slate-800/50 border-slate-600/50 text-white placeholder:text-slate-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 h-12 pl-4 pr-4 transition-all backdrop-blur-sm"
+                    placeholder="you@company.com"
+                  />
+                </div>
+                {emailError && (
+                  <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                    <span className="inline-block w-1 h-1 bg-red-400 rounded-full"></span>
+                    {emailError}
+                  </p>
+                )}
               </div>
 
               {/* Phone Number */}
               <div className="space-y-2">
-                <Label htmlFor="phone" className="text-white text-sm font-medium">
+                <Label htmlFor="phone" className="text-slate-200 text-sm font-medium flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-yellow-400" />
                   Phone Number *
                 </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  className="bg-slate-800 border-slate-600 text-white placeholder:text-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 h-12"
-                  placeholder="Enter your phone number"
-                />
-                {phoneError && <p className="text-red-400 text-sm mt-1">Please enter a valid phone number.</p>}
+                <div className="relative">
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="bg-slate-800/50 border-slate-600/50 text-white placeholder:text-slate-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 h-12 pl-4 pr-4 transition-all backdrop-blur-sm"
+                    placeholder="+1 (555) 000-0000"
+                  />
+                </div>
+                {phoneError && (
+                  <p className="text-red-400 text-xs mt-1.5 flex items-center gap-1">
+                    <span className="inline-block w-1 h-1 bg-red-400 rounded-full"></span>
+                    Please enter a valid phone number.
+                  </p>
+                )}
               </div>
 
               {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-6">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white h-12 cursor-pointer"
+                  className="flex-1 bg-slate-800/50 border-slate-600/50 text-slate-300 hover:bg-slate-700/50 hover:text-white hover:border-slate-500 h-12 cursor-pointer transition-all backdrop-blur-sm"
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-yellow-400 text-slate-900 hover:bg-yellow-500 font-semibold h-12 cursor-pointer"
+                  className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-500 text-slate-900 hover:from-yellow-500 hover:to-yellow-600 font-semibold h-12 cursor-pointer transition-all shadow-lg shadow-yellow-400/20 hover:shadow-yellow-400/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Submitting..." : "Get Early Access"}
+                  {isSubmitting ? (
+                    <span className="flex items-center gap-2">
+                      <span className="inline-block w-4 h-4 border-2 border-slate-900/30 border-t-slate-900 rounded-full animate-spin"></span>
+                      Submitting...
+                    </span>
+                  ) : (
+                    "Get Early Access"
+                  )}
                 </Button>
               </div>
             </form>
@@ -262,18 +303,37 @@ const userInfo = {
       </Dialog>
 
       <Dialog open={showThanks} onOpenChange={setShowThanks}>
-        <DialogContent className="sm:max-w-md bg-slate-900 border-slate-700 text-white">
-          <DialogClose className="text-white hover:text-gray-300" />
-          <DialogHeader>
-            <DialogTitle className="text-2xl text-yellow-400 text-center">Thank You!</DialogTitle>
-            <p className="text-slate-300 text-center mt-2">
+        <DialogContent className="sm:max-w-md bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700/50 text-white shadow-2xl">
+          <DialogClose
+              className="absolute right-4 top-4 z-50 w-10 h-10 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-slate-700/70 shadow-lg cursor-pointer transition-all duration-200"
+              aria-label="Close"
+            >
+            <X className="w-5 h-5" />
+          </DialogClose>
+          
+          {/* Decorative background */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 right-0 w-48 h-48 bg-green-400/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-yellow-400/10 rounded-full blur-3xl"></div>
+          </div>
+
+          <DialogHeader className="relative">
+            <div className="flex justify-center mb-4">
+              <div className="p-4 bg-green-400/10 rounded-full">
+                <CheckCircle className="w-12 h-12 text-green-400" />
+              </div>
+            </div>
+            <DialogTitle className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent text-center">
+              Thank You!
+            </DialogTitle>
+            <p className="text-slate-300 text-center mt-4 leading-relaxed">
               Your early access request has been submitted successfully. We'll get back to you soon!
             </p>
           </DialogHeader>
-          <div className="flex justify-center pt-4">
+          <div className="flex justify-center pt-6 relative">
             <Button
               onClick={() => setShowThanks(false)}
-              className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-semibold"
+              className="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-semibold px-8 shadow-lg shadow-yellow-400/20 hover:shadow-yellow-400/30 transition-all"
             >
               Close
             </Button>

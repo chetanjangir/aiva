@@ -16,7 +16,7 @@ export function FinalCtaSection() {
 
   return (
     <>
-      <section className="relative py-16 md:py-20 lg:py-24 bg-black overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-24 bg-transparent overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(250,197,71,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(250,197,71,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fac547]/10 rounded-full blur-3xl animate-pulse"></div>

@@ -13,42 +13,42 @@ const avatars = [
     title: "Dr. Sarah",
     profession: "Medical Assistant",
     description: "Provide instant medical information and appointment scheduling with AI-powered assistance.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/doctorAIVA.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/Dr-Sarah",
   },
   {
     category: "CUSTOMER SERVICE",
     title: "Virtual Agent",
     profession: "Customer Support",
     description: "Provide instant support and resolve queries efficiently with 24/7 availability.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/Customer-Service-AIVA.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/Virtual-Agent",
   },
   {
     category: "EDUCATION",
     title: "Language Partner",
     profession: "Education Specialist",
     description: "Practice new languages with an AI partner for fluent conversations anytime.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/Teacher-AIVA.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/LanguagePartner",
   },
   {
     category: "FINANCE",
     title: "Financial Advisor",
     profession: "Finance Expert",
     description: "Offer personalized financial advice and investment strategies tailored to your goals.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/Financial-Adviser-AIVA.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/Financial-Advisor",
   },
   {
     category: "HEALTHCARE",
     title: "AI Therapist",
     profession: "Mental Health Support",
     description: "Provide compassionate mental health support and guidance with empathy.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/AI_Therapist.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/AI-Therapist",
   },
   {
     category: "TECHNOLOGY",
     title: "Tech Support",
     profession: "IT Specialist",
     description: "Solve technical issues and provide expert IT assistance instantly.",
-    image: "https://ik.imagekit.io/tjtlycgp2/SaleAssist/tech-support-aiva.png",
+    image: "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/Tech-Support",
   },
 ]
 
@@ -81,7 +81,7 @@ export function ChooseAivaSection() {
   }, [currentIndex, isAutoPlay, isPaused])
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen bg-background py-12">
+    <section className="flex flex-col items-center justify-center min-h-screen bg-transparent py-12">
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-balance px-4">
         <span className="text-foreground">Choose Your Own </span>
         <span className="gradient-text">AIVA</span>

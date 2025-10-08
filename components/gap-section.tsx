@@ -4,7 +4,7 @@ import { TrendingDown, MessageSquareX, AlertTriangle, DollarSign } from "lucide-
 
 export function GapSection() {
   return (
-    <section className="relative py-8 md:py-16 lg:py-20 bg-black overflow-hidden">
+    <section className="relative py-8 md:py-16 lg:py-20 bg-transparent overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(234,179,8,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(234,179,8,0.02)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"></div>
@@ -15,9 +15,7 @@ export function GapSection() {
         <div className="text-center mb-12 md:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-sm mb-6">
             <AlertTriangle className="w-4 h-4 text-red-500" />
-            <span className="text-red-400 text-sm font-semibold tracking-wide uppercase">
-              The Hidden Cost
-            </span>
+            <span className="text-red-400 text-sm font-semibold tracking-wide uppercase">The Hidden Cost</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-balance leading-tight">
@@ -110,7 +108,7 @@ export function GapSection() {
                     { cx: 75, cy: 25, delay: "1s" },
                     { cx: 150, cy: 45, delay: "2s" },
                     { cx: 225, cy: 60, delay: "2.5s" },
-                    { cx: 300, cy: 70, delay: "3s" }
+                    { cx: 300, cy: 70, delay: "3s" },
                   ].map((point, i) => (
                     <circle
                       key={i}
@@ -155,7 +153,7 @@ export function GapSection() {
               {/* Stat 1 */}
               <div className="group relative bg-gradient-to-br from-red-500/10 via-black/40 to-red-600/10 backdrop-blur-xl rounded-2xl p-6 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 shadow-lg shadow-red-500/10 hover:shadow-red-500/20">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
-                
+
                 <div className="relative z-10 text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
                     <TrendingDown className="w-5 h-5 text-red-500" />
@@ -163,16 +161,14 @@ export function GapSection() {
                       67%
                     </div>
                   </div>
-                  <div className="text-sm md:text-base text-gray-400 font-medium">
-                    Customer drop-off rate
-                  </div>
+                  <div className="text-sm md:text-base text-gray-400 font-medium">Customer drop-off rate</div>
                 </div>
               </div>
 
               {/* Stat 2 */}
               <div className="group relative bg-gradient-to-br from-red-500/10 via-black/40 to-red-600/10 backdrop-blur-xl rounded-2xl p-6 border border-red-500/20 hover:border-red-500/40 transition-all duration-300 shadow-lg shadow-red-500/10 hover:shadow-red-500/20">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none"></div>
-                
+
                 <div className="relative z-10 text-center">
                   <div className="flex items-center justify-center gap-2 mb-3">
                     <DollarSign className="w-5 h-5 text-red-500" />
@@ -180,9 +176,7 @@ export function GapSection() {
                       $2.4M
                     </div>
                   </div>
-                  <div className="text-sm md:text-base text-gray-400 font-medium">
-                    Lost revenue annually
-                  </div>
+                  <div className="text-sm md:text-base text-gray-400 font-medium">Lost revenue annually</div>
                 </div>
               </div>
             </div>
@@ -191,7 +185,8 @@ export function GapSection() {
             <div className="relative bg-gradient-to-br from-yellow-500/5 via-black/20 to-amber-500/5 backdrop-blur-xl rounded-2xl p-6 border border-yellow-500/20 shadow-lg">
               <div className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-50 rounded-2xl pointer-events-none"></div>
               <p className="relative text-base md:text-lg text-gray-300 leading-relaxed">
-                <span className="text-yellow-400 font-semibold">The Solution?</span> AI that understands context, responds instantly, and feels genuinely helpful.
+                <span className="text-yellow-400 font-semibold">The Solution?</span> AI that understands context,
+                responds instantly, and feels genuinely helpful.
               </p>
             </div>
           </div>
