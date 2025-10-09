@@ -23,7 +23,6 @@ export const metadata: Metadata = {
     'SaleAssist',
     'Chatbot',
     'Conversational AI',
-    'Next.js SEO',
   ],
 
   // ✅ Base URL — important for OG & Canonical links

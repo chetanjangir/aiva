@@ -261,7 +261,7 @@ const userInfo = {
                     onChange={handleChange}
                     required
                     className="bg-slate-800/50 border-slate-600/50 text-white placeholder:text-slate-500 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 h-12 pl-4 pr-4 transition-all backdrop-blur-sm"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="+91 9876543210"
                   />
                 </div>
                 {phoneError && (
