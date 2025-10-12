@@ -94,6 +94,8 @@ export default function RootLayout({
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="geo.region" content="IN" />
         <meta name="geo.placename" content="India" />
+        <script src="https://static.saleassist.ai/vtiles/swidget.min.js"></script>
+
 
         {/* ✅ JSON-LD: Organization Structured Data (For rich search results) */}
         <script
@@ -138,6 +140,7 @@ export default function RootLayout({
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} hero-gradient min-h-screen`}>
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
+        
       </body>
     </html>
   )

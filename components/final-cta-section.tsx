@@ -78,7 +78,7 @@ export function FinalCtaSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="group relative px-8 py-4 bg-[#fac547] hover:bg-[#fac547]/90 text-black font-bold text-lg rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl shadow-[#fac547]/30 hover:shadow-[#fac547]/50 hover:scale-105 overflow-hidden min-w-[250px]"
+                className="group relative px-8 py-4 bg-[#fac547] hover:bg-[#fac547]/90 text-black font-bold text-lg rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl shadow-[#fac547]/30 hover:shadow-[#fac547]/50 hover:scale-105 overflow-hidden min-w-[250px] cursor-pointer"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
 

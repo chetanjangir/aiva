@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, X } from "lucide-react"
+import { ArrowRight, X, AlertTriangle } from "lucide-react"
 import { EarlyAccessModal } from "./early-access-modal"
 
 export function HeroSection() {
@@ -20,6 +20,12 @@ export function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 md:px-6 lg:px-16 xl:px-24 relative z-10">
+        <div className="w-full mx-auto flex items-center justify-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-sm mb-6">
+            <AlertTriangle className="w-4 h-4 text-red-500" />
+            <span className="text-red-400 text-sm font-semibold tracking-wide uppercase">Lost Engagement = Lost Sales!</span>
+          </div>
+        </div>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Left Side - Text Content */}
           <div className="flex-1 text-center lg:text-left order-2 lg:order-1">

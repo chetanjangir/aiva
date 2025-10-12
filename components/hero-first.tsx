@@ -53,14 +53,15 @@ export function HeroFirstSection() {
       <div className="container mx-auto px-4 mt-12 py-8 md:py-12">
         {/* Heading */}
         <div className="flex items-center justify-center px-4">
-          <div className="flex flex-col justify-start items-center text-center gap-4 w-[90%] sm:w-[70%] md:w-[45%] max-w-[37.69rem] animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <div className="flex flex-col justify-start items-center text-center gap-4 w-[90%] sm:w-[70%] md:w-[50%] max-w-[45rem] animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white drop-shadow-2xl">
-              Human by <br /> Experience. <br /> Powered by AI.
+              AI Human that talks, <br /> engages & sells
+
             </h1>
             <p className="mt-6 text-gray-300/70 text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-lg">
-              Blending Human warmth with 
+              Scale your sales 24*7, {" "} 
               <br className="lg:hidden block" />
-              AI precision- your new era of <br className="lg:hidden block" />digital engagement starts here
+              anywhere, no language boundaries.
               
             </p>
           </div>

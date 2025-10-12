@@ -81,7 +81,7 @@ export function ChooseAivaSection() {
   }, [currentIndex, isAutoPlay, isPaused])
 
   return (
-    <section className="flex flex-col items-center justify-center min-h-screen bg-transparent py-12">
+    <section className="flex flex-col items-center justify-center  bg-transparent py-12">
       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-balance px-4">
         <span className="text-foreground">Choose Your Own </span>
         <span className="gradient-text">AIVA</span>
@@ -223,7 +223,7 @@ export function ChooseAivaSection() {
         </div>
       </div>
 
-      <div className="text-center mt-16 px-4">
+      {/* <div className="text-center mt-16 px-4">
         <Button
           size="lg"
           className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-8 py-6 animate-glow font-semibold cursor-pointer"
@@ -232,7 +232,7 @@ export function ChooseAivaSection() {
           Get Started
           <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
-      </div>
+      </div> */}
 
       <EarlyAccessModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
