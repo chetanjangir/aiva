@@ -5,7 +5,7 @@ import Script from "next/script";
 
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
-import { GapSection } from "@/components/gap-section";
+// import { GapSection } from "@/components/gap-section";
 import { MeetAivaSection } from "@/components/meet-aiva-section";
 import { SuperpowersSection } from "@/components/superpowers-section";
 import { BusinessImpactSection } from "@/components/business-impact-section";

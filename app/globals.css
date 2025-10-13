@@ -212,3 +212,6 @@
 .animate-border-glow {
   animation: border-glow 3s infinite ease-in-out;
 }
+#shortAnimatedVideoElem{
+  object-fit: fill !important;
+}
