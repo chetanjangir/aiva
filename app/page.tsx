@@ -15,6 +15,7 @@ import { FinalCtaSection } from "@/components/final-cta-section";
 import { Footer } from "@/components/footer";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { HeroFirstSection } from "@/components/hero-first";
+import { PricingSection } from "@/components/pricing-section";
 import { LandingPage } from "@/components/old-way-new-way";
 
 export default function HomePage() {
@@ -65,6 +66,9 @@ useEffect(() => {
           <RevealOnScroll>
             <TouchpointsSection />
           </RevealOnScroll>
+          <RevealOnScroll>
+          <PricingSection />
+        </RevealOnScroll>
           <RevealOnScroll>
             <FinalCtaSection />
           </RevealOnScroll>
