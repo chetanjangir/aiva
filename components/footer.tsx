@@ -31,22 +31,18 @@ export function Footer() {
             className="flex justify-center items-center gap-6 text-sm text-muted-foreground"
           >
             <a
-              href="#"
-              className="rounded-md px-2 py-1 hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+              href="https://saleassist.ai/privacy-policy"
+              target="blank"
+              className="rounded-md px-2 py-1 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               Privacy Policy
             </a>
             <a
-              href="#"
-              className="rounded-md px-2 py-1 hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+              href="https://saleassist.ai/Terms-Conditions"
+              target="blank"
+              className="rounded-md px-2 py-1 hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
             >
               Terms
-            </a>
-            <a
-              href="#"
-              className="rounded-md px-2 py-1 hover:text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
-            >
-              Contact
             </a>
           </nav>
 

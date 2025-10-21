@@ -46,7 +46,7 @@ export function MeetAivaSection() {
       setIsMuted(!isMuted)
       if (willUnmute) {
         videoRef.current.volume = 1.0
-        videoRef.current.play().catch(() => {})
+        videoRef.current.play().catch(() => { })
       }
     }
   }
@@ -151,29 +151,44 @@ export function MeetAivaSection() {
                   </video>
 
                   <Button
-                    variant="secondary"
+                    variant="default"
                     size="icon"
-                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white border-white/20 transition-opacity duration-300 cursor-pointer h-12 w-12 md:h-16 md:w-16 rounded-full ${
-                      showControls ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                              bg-gradient-to-br from-yellow/80 to-yellow/60 text-black border border-white/30
+                              transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]
+                              h-12 w-12 md:h-16 md:w-16 rounded-full overflow-visible cursor-pointer
+                              ${showControls ? "opacity-100 scale-100" : "opacity-0 scale-90"}
+                              hover:scale-115 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]
+                              active:scale-95`}
                     onClick={(e) => {
                       e.stopPropagation()
                       togglePlay()
                     }}
                   >
+                    {/* Smooth glowing ripple waves */}
+                    <span className="absolute inset-0 rounded-full border border-white/60 animate-[ping_2s_linear_infinite] opacity-60" />
+                    <span className="absolute inset-0 rounded-full border border-white/40 animate-[ping_2s_linear_infinite] opacity-40 [animation-delay:400ms]" />
+                    <span className="absolute inset-0 rounded-full border border-white/20 animate-[ping_2s_linear_infinite] opacity-30 [animation-delay:800ms]" />
+
+                    {/* Soft ambient light */}
+                    <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_70%)] blur-md" />
+
+                    {/* Icon zone */}
                     {isPlaying ? (
-                      <Pause className="h-6 w-6 md:h-8 md:w-8 cursor-pointer" />
+                      <Pause className="h-7 w-7 md:h-9 md:w-9 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                     ) : (
-                      <Play className="h-6 w-6 md:h-8 md:w-8 cursor-pointer ml-1" />
+                      <div className="relative z-10 flex flex-col items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <Play className="h-6 w-6 md:h-8 md:w-8 mb-0.5" />
+                      </div>
                     )}
                   </Button>
+
 
                   <Button
                     variant="secondary"
                     size="icon"
-                    className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 bg-black/50 hover:bg-black/70 text-white border-white/20 transition-opacity duration-300 cursor-pointer h-8 w-8 md:h-10 md:w-10 ${
-                      isPlaying && showControls ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`absolute bottom-3 right-3 md:bottom-4 md:right-4 bg-black/50 hover:bg-black/70 text-white border-white/20 transition-opacity duration-300 cursor-pointer h-8 w-8 md:h-10 md:w-10 ${isPlaying && showControls ? "opacity-100" : "opacity-0"
+                      }`}
                     onClick={(e) => {
                       e.stopPropagation()
                       toggleMute()

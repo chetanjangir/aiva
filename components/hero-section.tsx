@@ -9,9 +9,7 @@ export function HeroSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <section className="relative  flex items-center justify-center bg-[linear-gradient(rgba(255,215,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.03)_1px,transparent_1px)] bg-[length:50px_50px]
-
- overflow-hidden py-24 px-4">
+    <section className="relative flex items-center justify-center bg-[linear-gradient(rgba(255,215,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,215,0,0.03)_1px,transparent_1px)] bg-[length:50px_50px] overflow-hidden py-24 px-4">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent rounded-full animate-pulse opacity-60"></div>
@@ -21,14 +19,14 @@ export function HeroSection() {
 
       <div className="container mx-auto px-4 md:px-6 lg:px-16 xl:px-24 relative z-10">
         <div className="w-full mx-auto flex items-center justify-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-sm mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/20 backdrop-blur-sm mb-6">
             <AlertTriangle className="w-4 h-4 text-red-500" />
             <span className="text-red-400 text-sm font-semibold tracking-wide uppercase">Lost Engagement = Lost Sales!</span>
           </div>
         </div>
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Left Side - Text Content */}
-          <div className="flex-1 text-center lg:text-left order-2 lg:order-1">
+          <div className="flex-1 text-center lg:text-left order-1 lg:order-1">
             {/* Main Headline */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 text-balance">
               <span className="text-foreground">Tired of </span>
@@ -59,15 +57,17 @@ export function HeroSection() {
               </div>
             </div>
 
-            {/* CTA Button */}
-          <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-6 py-5 md:px-8 md:py-6  font-semibold cursor-pointer"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Book A Demo
-              <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
-            </Button>
+            {/* CTA Button - Hidden on mobile, shown on medium and larger screens */}
+            <div className="hidden md:block">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-6 py-5 md:px-8 md:py-6 font-semibold cursor-pointer"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Book A Demo
+                <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
+              </Button>
+            </div>
           </div>
 
           {/* Right Side - Video */}
@@ -82,6 +82,18 @@ export function HeroSection() {
               aria-label="AIVA demo preview video"
             />
           </div>
+        </div>
+
+        {/* CTA Button - Only shown on mobile at bottom */}
+        <div className="md:hidden mt-8 flex justify-center">
+          <Button
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 text-base px-6 py-5 font-semibold cursor-pointer w-full max-w-sm"
+            onClick={() => setIsModalOpen(true)}
+          >
+            Book A Demo
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       </div>
 

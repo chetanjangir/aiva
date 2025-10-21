@@ -19,28 +19,10 @@ import { PricingSection } from "@/components/pricing-section";
 import { LandingPage } from "@/components/old-way-new-way";
 
 export default function HomePage() {
-useEffect(() => {
-  const interval = setInterval(() => {
-    // Tell TypeScript that window can have saleassistVideoTiles
-    const ws: any = window;
-    if (ws.saleassistVideoTiles) {
-      ws.saleassistVideoTiles.mountSourceVideo({
-        id: "d8dd1e15-11ad-403a-ad6a-a1442d7723c8",
-      });
-      clearInterval(interval);
-    }
-  }, 500);
 
-  return () => clearInterval(interval);
-}, []);
 
   return (
     <>
-      {/* ✅ Load SaleAssist video widget script */}
-      <Script
-        src="https://static.saleassist.ai/vtiles/swidget.min.js"
-        strategy="afterInteractive"
-      />
 
       <main className="min-h-screen bg-transparent relative">
         {/* Page content */}
