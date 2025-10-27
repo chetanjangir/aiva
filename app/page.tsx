@@ -17,6 +17,7 @@ import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { HeroFirstSection } from "@/components/hero-first";
 import { PricingSection } from "@/components/pricing-section";
 import { LandingPage } from "@/components/old-way-new-way";
+import { AiConversationInsightsSection } from "@/components/ai-conversation-insights";
 
 export default function HomePage() {
 
@@ -47,6 +48,9 @@ export default function HomePage() {
           </RevealOnScroll>
           <RevealOnScroll>
             <TouchpointsSection />
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <AiConversationInsightsSection/>
           </RevealOnScroll>
           <RevealOnScroll>
           <PricingSection />
