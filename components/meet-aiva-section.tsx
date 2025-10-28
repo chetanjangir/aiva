@@ -128,14 +128,14 @@ export function MeetAivaSection() {
         <div className="mb-8 md:mb-12 max-w-5xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 md:gap-8">
             {/* ✅ Video Card */}
-            <Card className="overflow-hidden bg-card/50 backdrop-blur-sm p-0 flex items-center justify-center">
+            <Card className="overflow-hidden bg-card/50 backdrop-blur-sm p-8 flex items-center justify-center">
               <CardContent className="p-0 flex items-center justify-center max-h-[80vh]">
                 <div
                   className="relative group w-full flex justify-center"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                 >
-                  <div className="absolute top-10 left-2 md:top-12 md:left-2 z-10 flex items-center gap-1 px-1 py-1 rounded-full">
+                  <div className="absolute top-14 left-2 md:top-14 md:left-4 z-10 flex items-center gap-1 px-1 py-1 rounded-full">
                     <span className="w-2 h-2 font-bold bg-red-600 rounded-full animate-pulse"></span>
                     <span className="text-red-500 font-bold text-[12px] md:text-[12px]   tracking-wider">LIVE</span>
                   </div>
@@ -205,11 +205,11 @@ export function MeetAivaSection() {
             </Card>
 
             <Card className="border-primary/20 bg-card/50 backdrop-blur-sm flex items-center">
-              <CardContent className="p-4 md:p-6 space-y-2">
+              <CardContent className="p-6 md:p-8 space-y-8">
                 <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-foreground text-left">
                   Experience the Future of Customer Engagement
                 </h3>
-                <div className="space-y-3 text-left">
+                <div className="space-y-6 text-left">
                   {points.map((point, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <span className="text-primary text-lg md:text-xl flex-shrink-0 mt-1">✓</span>
