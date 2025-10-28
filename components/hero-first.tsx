@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Play, X, Volume2, VolumeX, Maximize2, Pause } from "lucide-react";
+import { Play, X } from "lucide-react";
 
 const PREVIEW_URL =
   "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/deepaiva-preview";
@@ -28,41 +28,28 @@ export function HeroFirstSection() {
   const togglePreviewPlay = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     if (previewVideoRef.current) {
-      if (isPlaying) {
-        previewVideoRef.current.pause();
-      } else {
-        previewVideoRef.current.play();
-      }
+      if (isPlaying) previewVideoRef.current.pause();
+      else previewVideoRef.current.play();
       setIsPlaying(!isPlaying);
     }
   };
 
-  const handleFullscreen = () => {
-    if (mainVideoRef.current) {
-      const videoEl = mainVideoRef.current as HTMLVideoElement & {
-        requestFullscreen?: () => Promise<void>;
-      };
-      if (videoEl.requestFullscreen) {
-        videoEl.requestFullscreen();
-      }
-    }
-  };
-
   return (
-    <section className="relative hero-gradient">
-      <div className="container mx-auto px-4 mt-12 py-8 md:py-12">
+    <section className="relative min-h-screen flex flex-col justify-center bg-[url('https://img.freepik.com/premium-vector/network-connection-background_23-2148899874.jpg')] bg-cover bg-center bg-no-repeat">
+      
+      {/* ✅ Subtle overlay to make text readable */}
+<div className="absolute inset-0 bg-black/20 backdrop-blur-sm sm:backdrop-blur-sm z-0"></div>
+      <div className="container mx-auto px-4 mt-12 py-8 md:py-12 relative z-10">
         {/* Heading */}
         <div className="flex items-center justify-center px-4">
           <div className="flex flex-col justify-start items-center text-center gap-4 w-[95%] sm:w-[80%] md:w-[50%] max-w-[45rem] animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <h1 className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white drop-shadow-2xl">
-              AI Human that talks, <br /> engages & sells
-
+              <span className="gradient-text">AI Human</span> that <br /> Talk, Engage & Sell
             </h1>
             <p className="mt-6 text-gray-300/70 text-base sm:text-lg md:text-xl lg:text-2xl drop-shadow-lg">
-              Scale your sales 24*7, {" "}
+              Scale your sales 24×7,{" "}
               <br className="lg:hidden block" />
-              anywhere, no language boundaries.
-
+              anywhere, no language boundaries.
             </p>
           </div>
         </div>
@@ -79,7 +66,6 @@ export function HeroFirstSection() {
             onMouseLeave={() => setIsHovering(false)}
             onClick={() => setOpen(true)}
           >
-            {/* Continuous glow border */}
             <div className="absolute inset-0 rounded-2xl border border-purple-500/50 animate-border-glow pointer-events-none"></div>
 
             {/* Preview Video */}
@@ -94,8 +80,6 @@ export function HeroFirstSection() {
               preload="metadata"
               aria-label="AIVA video preview"
             />
-
-
 
             {/* Play Button */}
             <div
@@ -124,28 +108,15 @@ export function HeroFirstSection() {
             className="relative w-full max-w-6xl bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-900 rounded-2xl border-2 border-purple-500/40 shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
-            <div className="absolute top-0  right-0 z-10 p-2 bg-gradient-to-br  to-transparent flex justify-between items-center">
-              {/* <h3 className="text-white font-semibold text-lg">
-                AI Humans in Action
-              </h3> */}
-              <div className="flex gap-2">
-                {/* <button
-                  onClick={handleFullscreen}
-                  className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 flex items-center justify-center cursor-pointer"
-                >
-                  <Maximize2 className="h-5 w-5 text-white" />
-                </button> */}
-                <button
-                  onClick={() => setOpen(false)}
-                  className="h-10 w-10 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-black/20 flex items-center justify-center hover:rotate-90 transition-transform cursor-pointer"
-                >
-                  <X className="h-6 w-6 text-white" />
-                </button>
-              </div>
+            <div className="absolute top-0 right-0 z-10 p-2 flex justify-between items-center">
+              <button
+                onClick={() => setOpen(false)}
+                className="h-10 w-10 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-black/20 flex items-center justify-center hover:rotate-90 transition-transform cursor-pointer"
+              >
+                <X className="h-6 w-6 text-white" />
+              </button>
             </div>
 
-            {/* Main Video */}
             <div className="relative w-full">
               <video
                 ref={mainVideoRef}
@@ -154,9 +125,7 @@ export function HeroFirstSection() {
                 autoPlay
                 playsInline
                 className="w-full h-auto md:aspect-video aspect-[16/9] object-cover rounded-2xl transition-all duration-500"
-                // style={{ maxHeight: "80vh" }}
               />
-              {/* Continuous glow border */}
               <div className="absolute inset-0 rounded-2xl border border-pink-500/50 animate-border-glow pointer-events-none" />
             </div>
           </div>
