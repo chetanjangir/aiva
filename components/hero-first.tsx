@@ -36,9 +36,9 @@ export function HeroFirstSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-center bg-[url('https://img.freepik.com/premium-vector/network-connection-background_23-2148899874.jpg')] bg-cover bg-center bg-no-repeat">
-      
       {/* ✅ Subtle overlay to make text readable */}
-<div className="absolute inset-0 bg-black/20 backdrop-blur-sm sm:backdrop-blur-sm z-0"></div>
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm sm:backdrop-blur-sm z-0"></div>
+
       <div className="container mx-auto px-4 mt-12 py-8 md:py-12 relative z-10">
         {/* Heading */}
         <div className="flex items-center justify-center px-4">
@@ -58,9 +58,10 @@ export function HeroFirstSection() {
         <div className="mt-10 md:mt-12 mx-auto w-full max-w-4xl">
           <div
             className={`relative aspect-video overflow-hidden rounded-2xl border-4 group transition-all duration-500 hover:scale-[1.02]
-              ${isHovering
-                ? "border-purple-500/70 shadow-[0_0_40px_rgba(168,85,247,0.6)]"
-                : "border-purple-500/50 shadow-[0_0_25px_rgba(168,85,247,0.4)]"
+              ${
+                isHovering
+                  ? "border-purple-500/70 shadow-[0_0_40px_rgba(168,85,247,0.6)]"
+                  : "border-purple-500/50 shadow-[0_0_25px_rgba(168,85,247,0.4)]"
               }`}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
@@ -81,10 +82,17 @@ export function HeroFirstSection() {
               aria-label="AIVA video preview"
             />
 
+            {/* 🔴 LIVE Badge */}
+            <div className="absolute top-4 left-4 flex items-center gap-2 bg-red-600/90 text-white text-xs sm:text-sm font-bold px-3 py-1.5 rounded-full shadow-lg backdrop-blur-md">
+              <span className="w-2.5 h-2.5 rounded-full bg-white animate-pulse"></span>
+              LIVE
+            </div>
+
             {/* Play Button */}
             <div
-              className={`absolute bottom-4 left-1/2 -translate-x-1/2 transition-all duration-500 ${isHovering ? "opacity-100" : "opacity-90"
-                }`}
+              className={`absolute bottom-4 left-1/2 -translate-x-1/2 transition-all duration-500 ${
+                isHovering ? "opacity-100" : "opacity-90"
+              }`}
             >
               <button
                 aria-label="Play full video"
