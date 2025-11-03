@@ -106,9 +106,9 @@ export function MeetAivaSection() {
         {/* Heading & top section same */}
         <div className="mb-8 md:mb-12">
           <div className="relative inline-block">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full bg-gradient-to-br from-primary to-accent p-2 animate-pulse-glow mx-auto">
+            <div className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-primary to-accent p-2 animate-pulse-glow mx-auto">
               <div className="w-full h-full rounded-full bg-card flex items-center justify-center relative overflow-hidden">
-                <Video className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 text-primary animate-float" />
+                <Video className="w-12 h-12 sm:w-12 sm:h-12 md:w-24 md:h-24 lg:w-24 lg:h-24 text-primary animate-float" />
                 <div className="absolute inset-0 bg-gradient-to-t from-accent/20 to-transparent"></div>
               </div>
             </div>

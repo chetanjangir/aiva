@@ -111,7 +111,7 @@ return (
             <li>• Traditional UI</li>
           </ul>
           <div className="flex justify-center">
-            <Button variant="outline" className="w-96 bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500 hover:text-gray-200 transition-all duration-300 cursor-not-allowed" disabled>
+            <Button variant="outline" className="w-auto bg-gray-800 border-gray-600 text-gray-300 hover:bg-gray-700 hover:border-gray-500 hover:text-gray-200 transition-all duration-300 cursor-not-allowed" disabled>
               Agent Offline. Try Chat after some time
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
@@ -120,7 +120,7 @@ return (
       </Card>
 
       {/* Option 2: Video Avatar Chat - NEW WAY */}
-      <Card className="relative overflow-hidden border-2 border-yellow-400 bg-black/60 backdrop-blur-lg hover:border-yellow-300 transition-all duration-300 cursor-pointer group shadow-lg hover:shadow-xl">
+      <Card className="relative overflow-hidden border-2 border-yellow-400 bg-black/60 backdrop-blur-lg hover:border-yellow-300 transition-all duration-300 group shadow-lg hover:shadow-xl">
         <div className="absolute top-4 left-4 bg-yellow-400 text-black px-3 py-1 rounded-full text-md font-bold">
           NEW AIVA WAY
         </div>
@@ -166,7 +166,7 @@ return (
           </ul>
           <div className="flex justify-center">
             <Button
-              className="w-96 bg-yellow-400 hover:bg-yellow-500 text-black font-semibold group-hover:scale-105 transition-transform"
+              className="cursor-pointer w-auto overflow-hidden bg-yellow-400 hover:bg-yellow-500 text-black font-semibold g transition-transform"
               onClick={() => setIsModalOpen(true)}>
               Get Early Access
               <Sparkles className="w-4 h-4 ml-2" />
