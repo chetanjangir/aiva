@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Suspense } from "react"
@@ -6,16 +7,11 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  // ✅ Global Title & Template
   title: {
     default: 'AIVA - AI Virtual Agent',
     template: '%s | AIVA',
   },
-
-  // ✅ Global Description
   description: 'Deploy your first AI Video Agent today! Boost engagement and automate conversations.',
-
-  // ✅ Keywords help in semantic search (not a ranking factor but good practice)
   keywords: [
     'AI Video Agent',
     'Virtual Agent',
@@ -24,17 +20,8 @@ export const metadata: Metadata = {
     'Chatbot',
     'Conversational AI',
   ],
-
-  // ✅ Base URL — important for OG & Canonical links
   metadataBase: new URL('https://aiva.saleassist.ai'),
-
-  // ✅ Robots settings (Allow indexing)
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  // ✅ Open Graph — Social sharing (Facebook, LinkedIn etc.)
+  robots: { index: true, follow: true },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -51,8 +38,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-
-  // ✅ Twitter Card — Social sharing (Twitter/X)
   twitter: {
     card: 'summary_large_image',
     title: 'AIVA - AI Virtual Agent',
@@ -62,22 +47,15 @@ export const metadata: Metadata = {
     ],
     creator: '@salesassist_ai',
   },
-
-  // ✅ Canonical URL — avoid duplicate content issues
-  alternates: {
-    canonical: 'https://aiva.saleassist.ai',
-  },
-
-  // ✅ Icons — favicon + PWA icons
+  alternates: { canonical: 'https://aiva.saleassist.ai' },
   icons: {
-    icon: [
-      { url: '/favicon.png' }
-    ],
-    apple: '/apple-touch-icon.png', // 📌 also add this in /public
+    icon: [{ url: '/favicon.png' }],
+    apple: '/apple-touch-icon.png',
   },
-
   generator: 'SaleAssist.ai',
 }
+
+const GTM_ID = 'GTM-WFFGHZKG'
 
 export default function RootLayout({
   children,
@@ -94,10 +72,24 @@ export default function RootLayout({
         <meta httpEquiv="Content-Language" content="en" />
         <meta name="geo.region" content="IN" />
         <meta name="geo.placename" content="India" />
-        {/* <script src="https://static.saleassist.ai/vtiles/swidget.min.js"></script> */}
 
+        {/* ✅ Google Tag Manager */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+        {/* ✅ End Google Tag Manager */}
 
-        {/* ✅ JSON-LD: Organization Structured Data (For rich search results) */}
+        {/* ✅ JSON-LD: Organization Structured Data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -106,7 +98,7 @@ export default function RootLayout({
               '@type': 'Organization',
               name: 'AIVA',
               url: 'https://aiva.saleassist.ai',
-              logo: 'https://aiva.saleassist.ai/images/design-mode/aiva-logo-new.png', // 📌 replace with actual logo URL
+              logo: 'https://aiva.saleassist.ai/images/design-mode/aiva-logo-new.png',
               sameAs: [
                 'https://x.com/salesassist_ai',
                 'https://www.linkedin.com/company/safemeet/',
@@ -118,7 +110,7 @@ export default function RootLayout({
           }}
         />
 
-        {/* ✅ Optional: WebSite structured data for site search enhancements */}
+        {/* ✅ Optional: WebSite structured data */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -138,9 +130,19 @@ export default function RootLayout({
       </head>
 
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} hero-gradient min-h-screen`}>
+        {/* ✅ Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+        {/* ✅ End Google Tag Manager (noscript) */}
+
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
-        
       </body>
     </html>
   )
