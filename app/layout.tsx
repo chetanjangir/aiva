@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
+import SaleAssistChatWidget from "@/components/SaleAssistChatWidget";
 
 /* =======================
    CONFIG (same file only)
@@ -176,6 +177,14 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        {/* SaleAssist Widget Script */}
+        <Script
+          src="https://static.saleassist.ai/widgets/widget.js"
+          strategy="afterInteractive"
+        />
+
+        {/* Mount Widget */}
+        <SaleAssistChatWidget />
 
         <Suspense fallback={null}>{children}</Suspense>
         <Analytics />

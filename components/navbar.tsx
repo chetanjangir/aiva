@@ -36,7 +36,7 @@ export function Navbar() {
             {/* Get Early Access Button */}
             <Button
               size="default"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold cursor-pointer mr-2 md:p-6"
+              className="get-early-access-aiva bg-primary text-primary-foreground hover:bg-primary/90 font-semibold cursor-pointer mr-2 md:p-6"
               onClick={() => setIsModalOpen(true)}
             >
               Get Early Access
