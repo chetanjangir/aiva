@@ -227,7 +227,7 @@ export function MeetAivaSection() {
         <Button
           size="lg"
           variant="outline"
-          className="bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground text-base md:text-lg px-6 py-5 md:px-8 md:py-6 animate-glow font-semibold cursor-pointer"
+          className="get-early-access-aiva bg-transparent border-primary text-primary hover:bg-primary hover:text-primary-foreground text-base md:text-lg px-6 py-5 md:px-8 md:py-6 animate-glow font-semibold cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
           <Play className="mr-2 h-4 w-4 md:h-5 md:w-5" />

@@ -189,7 +189,7 @@ export function ChooseAivaSection() {
                     <p className="text-sm text-gray-300 mb-4">{avatar.description}</p>
                     <Button
                       variant="secondary"
-                      className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-4 py-2 font-semibold cursor-pointer"
+                      className="get-early-access-aiva bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-4 py-2 font-semibold cursor-pointer"
                       onClick={() => setIsModalOpen(true)}
                     >
                       Get Demo <Play className="ml-2 h-4 w-4" />

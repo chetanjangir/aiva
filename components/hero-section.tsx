@@ -61,7 +61,7 @@ export function HeroSection() {
             <div className="hidden md:block">
               <Button
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-6 py-5 md:px-8 md:py-6 font-semibold cursor-pointer"
+                className="get-early-access-aiva bg-primary text-primary-foreground hover:bg-primary/90 text-base md:text-lg px-6 py-5 md:px-8 md:py-6 font-semibold cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
               >
                 Book A Demo

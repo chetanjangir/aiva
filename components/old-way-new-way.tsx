@@ -166,7 +166,7 @@ return (
           </ul>
           <div className="flex justify-center">
             <Button
-              className="cursor-pointer w-auto overflow-hidden bg-yellow-400 hover:bg-yellow-500 text-black font-semibold g transition-transform"
+              className="get-early-access-aiva cursor-pointer w-auto overflow-hidden bg-yellow-400 hover:bg-yellow-500 text-black font-semibold g transition-transform"
               onClick={() => setIsModalOpen(true)}>
               Get Early Access
               <Sparkles className="w-4 h-4 ml-2" />
