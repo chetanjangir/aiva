@@ -4,9 +4,9 @@ import * as React from "react";
 import { X, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 const PREVIEW_URL =
-  "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/deepaiva-preview";
+  "https://client-static.saleassist.ai/a3ccd893-d7cb-42cb-864c-76706a95b7c1/saleassist-armani-demo-preview.mp4";
 const VIDEO_URL =
-  "https://client-static.saleassist.ai/9eb1c850-96f3-480a-9fa5-392733431de6/deep-calling-deep-aiva.mp4";
+  "https://client-static.saleassist.ai/a3ccd893-d7cb-42cb-864c-76706a95b7c1/FOR-DEMO-PURPOSE-SaleAssist.mp4";
 
 export function HeroFirstSection() {
   const [open, setOpen] = React.useState(false);
