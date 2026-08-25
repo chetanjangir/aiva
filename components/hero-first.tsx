@@ -146,7 +146,7 @@ export function HeroFirstSection() {
             <video
               ref={previewVideoRef}
               src={PREVIEW_URL}
-              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
+              className="absolute inset-0 h-full w-full object-contain transition-transform duration-700 hover:scale-105"
               autoPlay
               muted={previewMuted}
               loop
