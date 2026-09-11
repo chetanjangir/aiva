@@ -215,3 +215,40 @@
 #shortAnimatedVideoElem{
   object-fit: fill !important;
 }
+
+@keyframes shopifyMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[shopifyMarquee_18s_linear_infinite\] {
+    animation: none !important;
+  }
+}
+
+.shopify-marquee-track {
+  animation: shopifyMarquee 22s linear infinite;
+  will-change: transform;
+}
+
+@keyframes shopifyMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shopify-marquee-track {
+    animation: none;
+  }
+}
