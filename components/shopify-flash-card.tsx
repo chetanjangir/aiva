@@ -401,9 +401,6 @@ export default function ShopifyFlashCard({
             <MovingText href={href} />
           </div>
 
-          {/* =================================================
-              FIXED CLICK HERE — RIGHT
-          ================================================= */}
 
           <a
             href={href}
@@ -425,7 +422,7 @@ export default function ShopifyFlashCard({
               border-white/[0.07]
               bg-[#08080d]/98
               backdrop-blur-xl
-              text-[10px]
+              text-[11px]
               font-semibold
               text-emerald-400
               transition-all
@@ -474,10 +471,6 @@ export default function ShopifyFlashCard({
     </>
   )
 }
-
-/* ===============================================================
-   CONTINUOUS MOVING MARQUEE
-=============================================================== */
 
 function MovingText({ href }: { href: string }) {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -636,7 +629,7 @@ function MarqueeItem({
     >
       <span
         className="
-          text-[11px]
+          text-[12px]
           font-medium
           text-white/65
         "
@@ -650,7 +643,7 @@ function MarqueeItem({
 
       <span
         className="
-          text-[11px]
+          text-[12px]
           font-semibold
           text-emerald-400
         "
