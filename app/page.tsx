@@ -18,6 +18,7 @@ import { HeroFirstSection } from "@/components/hero-first";
 import { PricingSection } from "@/components/pricing-section";
 import { LandingPage } from "@/components/old-way-new-way";
 import { AiConversationInsightsSection } from "@/components/ai-conversation-insights";
+import ShopifyFlashCard from "@/components/shopify-flash-card";
 
 export default function HomePage() {
 
@@ -26,8 +27,8 @@ export default function HomePage() {
     <>
 
       <main className="min-h-screen bg-transparent relative">
-        {/* Page content */}
         <Navbar />
+         <ShopifyFlashCard />
         <div className="pt-4 md:pt-12">
           <HeroFirstSection />
           <HeroSection />
@@ -59,7 +60,10 @@ export default function HomePage() {
             <FinalCtaSection />
           </RevealOnScroll>
           <Footer />
+
         </div>
+       
+        
 
         {/* ✅ Optional container if you want controlled placement */}
         {/* <div id="saleassist-widget" className="fixed bottom-6 right-6 z-50" /> */}
