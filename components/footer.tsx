@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="bg-secondary/30 border-t border-border py-12">
       <div className="container mx-auto px-4 md:px-6 lg:px-12 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-8">
-          {/* Brand + Powered by */}
+          {/* Brand + Powered by + Shopify */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <Image
               src="/images/design-mode/aiva-logo-new.png"
@@ -22,6 +22,24 @@ export function Footer() {
               className="text-xs text-muted-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded"
             >
               Powered by <span className="font-medium">SaleAssist.ai</span>
+            </a>
+
+            {/* Available on Shopify */}
+            <a
+              href="https://apps.shopify.com/aiva-ai-video-shopping-advisor"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Get AIVA on the Shopify App Store"
+              className="mt-2 flex flex-col items-center md:items-start gap-1.5 opacity-90 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded"
+            >
+              
+              <Image
+                src="/images/shopify-logo.png"
+                alt="Shopify"
+                width={120}
+                height={34}
+                className="h-8 w-auto"
+              />
             </a>
           </div>
 
@@ -96,7 +114,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 border-border e-full pt-6 flex flex-col sm:flex-row items-center justify-center gap-4 mx-auto">
+        <div className="mt-2 border-border e-full pt-2 flex flex-col items-center justify-center gap-8 mx-auto">
           <p className="text-xs sm:text-sm text-muted-foreground text-center">
             {"© "}
             {new Date().getFullYear()} <span className="font-medium">AIVA</span>. All rights reserved.

@@ -17,9 +17,13 @@ export default function ShopifyFlashCard({
 }: ShopifyFlashCardProps) {
   const [showDesktop, setShowDesktop] = useState(false)
   const [showMobile, setShowMobile] = useState(true)
-  const [dismissed, setDismissed] = useState(false)
 
-  const hideTimer = useRef<number | null>(null)
+  // separate "mounted" flags so each can unmount independently
+  const [cardMounted, setCardMounted] = useState(true)
+  const [barMounted, setBarMounted] = useState(true)
+
+  const cardHideTimer = useRef<number | null>(null)
+  const barHideTimer = useRef<number | null>(null)
 
   /* =========================================================
      SHOW / HIDE LOGIC
@@ -27,18 +31,18 @@ export default function ShopifyFlashCard({
 
   useEffect(() => {
     if (rememberDismiss) {
-      const wasDismissed =
-        window.localStorage.getItem(STORAGE_KEY)
+      const wasDismissed = window.localStorage.getItem(STORAGE_KEY)
 
       if (wasDismissed === "1") {
-        setDismissed(true)
         setShowMobile(false)
         setShowDesktop(false)
+        setCardMounted(false)
+        setBarMounted(false)
         return
       }
     }
 
-    // Marquee visible immediately
+    // Marquee bar visible immediately
     setShowMobile(true)
 
     // Desktop card appears after delay
@@ -48,254 +52,260 @@ export default function ShopifyFlashCard({
 
     return () => {
       window.clearTimeout(timer)
-
-      if (hideTimer.current !== null) {
-        window.clearTimeout(hideTimer.current)
-      }
+      if (cardHideTimer.current !== null) window.clearTimeout(cardHideTimer.current)
+      if (barHideTimer.current !== null) window.clearTimeout(barHideTimer.current)
     }
   }, [delay, rememberDismiss])
 
   /* =========================================================
-     CLOSE
+     CLOSE — card only
   ========================================================= */
 
-  const handleClose = () => {
+  const handleCloseCard = () => {
     setShowDesktop(false)
-    setShowMobile(false)
 
     if (rememberDismiss) {
       window.localStorage.setItem(STORAGE_KEY, "1")
     }
 
-    hideTimer.current = window.setTimeout(() => {
-      setDismissed(true)
+    cardHideTimer.current = window.setTimeout(() => {
+      setCardMounted(false)
     }, 600)
   }
 
-  if (dismissed) return null
+  /* =========================================================
+     CLOSE — marquee bar only
+  ========================================================= */
+
+  const handleCloseBar = () => {
+    setShowMobile(false)
+
+    barHideTimer.current = window.setTimeout(() => {
+      setBarMounted(false)
+    }, 600)
+  }
 
   return (
     <>
-      {/* =======================================================
-          DESKTOP SHOPIFY CARD
-      ======================================================= */}
-
-      <aside
-        aria-label="Shopify launch announcement"
-        className={[
-          "hidden lg:flex",
-          "fixed left-6 bottom-4 z-[999999]",
-          "h-[150px] w-[340px]",
-          "box-border overflow-hidden",
-          "flex-col",
-          "rounded-[16px]",
-          "border border-white/[0.10]",
-          "bg-[linear-gradient(145deg,rgba(22,18,42,0.98),rgba(9,11,26,0.99))]",
-          "p-[18px]",
-          "shadow-[0_24px_65px_rgba(0,0,0,0.42),0_8px_25px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.055)]",
-          "backdrop-blur-[18px]",
-          "transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
-          showDesktop
-            ? "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto"
-            : "-translate-x-[35px] translate-y-[12px] scale-[0.985] opacity-0 pointer-events-none",
-        ].join(" ")}
-      >
-        {/* Top accent */}
-        <div
-          aria-hidden="true"
-          className="
-            absolute
-            left-5
-            right-5
-            top-0
-            h-px
-            bg-[linear-gradient(90deg,transparent,rgba(82,224,255,0.65),rgba(135,104,255,0.55),transparent)]
-            opacity-75
-          "
-        />
-
-        {/* Cyan glow */}
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            -bottom-[100px]
-            -left-[80px]
-            h-[220px]
-            w-[220px]
-            rounded-full
-            bg-[radial-gradient(circle,rgba(44,210,255,0.09),transparent_68%)]
-          "
-        />
-
-        {/* Purple glow */}
-        <div
-          aria-hidden="true"
-          className="
-            pointer-events-none
-            absolute
-            -right-[90px]
-            -top-[90px]
-            h-[190px]
-            w-[190px]
-            rounded-full
-            bg-[radial-gradient(circle,rgba(135,104,255,0.08),transparent_70%)]
-          "
-        />
-
-        {/* Close button */}
-        <button
-          type="button"
-          onClick={handleClose}
-          aria-label="Dismiss announcement"
-          className="
-            absolute
-            right-[10px]
-            top-[10px]
-            z-30
-            flex
-            h-[22px]
-            w-[22px]
-            items-center
-            justify-center
-            rounded-full
-            border
-            border-white/[0.06]
-            bg-white/[0.035]
-            text-white/[0.40]
-            transition-colors
-            duration-200
-            hover:border-white/[0.12]
-            hover:bg-white/[0.08]
-            hover:text-white
-            cursor-pointer
-          "
+      {cardMounted && (
+        <aside
+          aria-label="Shopify launch announcement"
+          className={[
+            "hidden lg:flex",
+            "fixed left-6 bottom-4 z-[999999]",
+            "h-[150px] w-[340px]",
+            "box-border overflow-hidden",
+            "flex-col",
+            "rounded-[16px]",
+            "border border-white/[0.10]",
+            "bg-[linear-gradient(145deg,rgba(22,18,42,0.98),rgba(9,11,26,0.99))]",
+            "p-[18px]",
+            "shadow-[0_24px_65px_rgba(0,0,0,0.42),0_8px_25px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.055)]",
+            "backdrop-blur-[18px]",
+            "transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+            showDesktop
+              ? "translate-x-0 translate-y-0 scale-100 opacity-100 pointer-events-auto"
+              : "-translate-x-[35px] translate-y-[12px] scale-[0.985] opacity-0 pointer-events-none",
+          ].join(" ")}
         >
-          <svg
-            viewBox="0 0 24 24"
-            width="12"
-            height="12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
+          {/* Top accent */}
+          <div
             aria-hidden="true"
+            className="
+              absolute
+              left-5
+              right-5
+              top-0
+              h-px
+              bg-[linear-gradient(90deg,transparent,rgba(82,224,255,0.65),rgba(135,104,255,0.55),transparent)]
+              opacity-75
+            "
+          />
+
+          {/* Cyan glow */}
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute
+              -bottom-[100px]
+              -left-[80px]
+              h-[220px]
+              w-[220px]
+              rounded-full
+              bg-[radial-gradient(circle,rgba(44,210,255,0.09),transparent_68%)]
+            "
+          />
+
+          {/* Purple glow */}
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute
+              -right-[90px]
+              -top-[90px]
+              h-[190px]
+              w-[190px]
+              rounded-full
+              bg-[radial-gradient(circle,rgba(135,104,255,0.08),transparent_70%)]
+            "
+          />
+
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={handleCloseCard}
+            aria-label="Dismiss announcement"
+            className="
+              absolute
+              right-[10px]
+              top-[10px]
+              z-30
+              flex
+              h-[22px]
+              w-[22px]
+              items-center
+              justify-center
+              rounded-full
+              border
+              border-white/[0.06]
+              bg-white/[0.035]
+              text-white/[0.40]
+              transition-colors
+              duration-200
+              hover:border-white/[0.12]
+              hover:bg-white/[0.08]
+              hover:text-white
+              cursor-pointer
+            "
           >
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
-        </button>
-
-        {/* Card content */}
-        <div className="relative z-10 flex h-full items-start gap-4">
-          {/* Shopify icon */}
-          <ShopifyIcon />
-
-          <div className="min-w-0 flex-1 pr-5">
-            <p
-              className="
-                mb-1.5
-                text-[8px]
-                font-semibold
-                uppercase
-                leading-none
-                tracking-[0.16em]
-                text-[#f5c518]/80
-              "
+            <svg
+              viewBox="0 0 24 24"
+              width="12"
+              height="12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              aria-hidden="true"
             >
-              Just launched
-            </p>
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
 
-            <h3
-              className="
-                m-0
-                max-w-[240px]
-                text-[19px]
-                font-semibold
-                leading-[1.12]
-                tracking-[-0.035em]
-                text-white/[0.96]
-              "
-            >
-              AIVA is now on Shopify
-            </h3>
+          {/* Card content */}
+          <div className="relative z-10 flex h-full items-start gap-4">
+            {/* Shopify icon */}
+            <ShopifyIcon />
 
-            <p
-              className="
-                mt-2
-                max-w-[245px]
-                text-[10px]
-                font-normal
-                leading-[1.45]
-                text-[#c6c0d6]/[0.67]
-              "
-            >
-              Add the AI video shopping advisor to your
-              Shopify store and engage shoppers 24/7.
-            </p>
-
-            {/* CTA */}
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                group
-                mt-2.5
-                inline-flex
-                h-[30px]
-                items-center
-                justify-center
-                gap-2
-                rounded-[8px]
-                bg-gradient-to-br
-                from-[#f8d64e]
-                to-[#f5c518]
-                px-3
-                text-[10px]
-                font-semibold
-                leading-none
-                text-[#24133b]
-                shadow-[0_7px_20px_rgba(245,197,24,0.13),inset_0_1px_0_rgba(255,255,255,0.28)]
-                transition-all
-                duration-200
-                hover:-translate-y-px
-                hover:brightness-105
-                cursor-pointer
-              "
-            >
-              <span>View on App Store</span>
-
-              <svg
-                viewBox="0 0 24 24"
-                width="13"
-                height="13"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+            <div className="min-w-0 flex-1 pr-5">
+              <p
                 className="
-                  transition-transform
-                  duration-200
-                  group-hover:translate-x-[2px]
+                  mb-1.5
+                  text-[8px]
+                  font-semibold
+                  uppercase
+                  leading-none
+                  tracking-[0.16em]
+                  text-[#f5c518]/80
                 "
-                aria-hidden="true"
               >
-                <path d="M5 12h14" />
-                <path d="m13 6 6 6-6 6" />
-              </svg>
-            </a>
+                Just launched
+              </p>
+
+              <h3
+                className="
+                  m-0
+                  max-w-[240px]
+                  text-[19px]
+                  font-semibold
+                  leading-[1.12]
+                  tracking-[-0.035em]
+                  text-white/[0.96]
+                "
+              >
+                AIVA is now on Shopify
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  max-w-[245px]
+                  text-[10px]
+                  font-normal
+                  leading-[1.45]
+                  text-[#c6c0d6]/[0.67]
+                "
+              >
+                Add the AI video shopping advisor to your
+                Shopify store and engage shoppers 24/7.
+              </p>
+
+              {/* CTA */}
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  group
+                  mt-2.5
+                  inline-flex
+                  h-[30px]
+                  items-center
+                  justify-center
+                  gap-2
+                  rounded-[8px]
+                  bg-gradient-to-br
+                  from-[#f8d64e]
+                  to-[#f5c518]
+                  px-3
+                  text-[10px]
+                  font-semibold
+                  leading-none
+                  text-[#24133b]
+                  shadow-[0_7px_20px_rgba(245,197,24,0.13),inset_0_1px_0_rgba(255,255,255,0.28)]
+                  transition-all
+                  duration-200
+                  hover:-translate-y-px
+                  hover:brightness-105
+                  cursor-pointer
+                "
+              >
+                <span>View on App Store</span>
+
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="
+                    transition-transform
+                    duration-200
+                    group-hover:translate-x-[2px]
+                  "
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m13 6 6 6-6 6" />
+                </svg>
+              </a>
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
+      )}
 
       {/* =======================================================
-          CONTINUOUS MARQUEE
-          ALL DEVICES
+          ANNOUNCEMENT BAR  (SaleAssist style)
+          Desktop: single centered line, fixed (no scroll)
+          Mobile:  same sentence, scrolling
       ======================================================= */}
 
-      {showMobile && (
+      {barMounted && (
         <div
           className={[
             "fixed",
@@ -304,23 +314,21 @@ export default function ShopifyFlashCard({
             "top-[80px]",
             "md:top-[96px]",
             "z-[40]",
-            "h-[42px]",
+            "h-[44px]",
             "w-full",
             "overflow-hidden",
             "border-y",
             "border-white/[0.08]",
-            "bg-[linear-gradient(90deg,rgba(8,8,20,0.98),rgba(18,14,35,0.98),rgba(8,8,20,0.98))]",
-            "backdrop-blur-xl",
-            "shadow-[0_6px_25px_rgba(0,0,0,0.22)]",
+            "bg-[linear-gradient(90deg,#150e2e,#211044,#150e2e)]",
+            "shadow-[0_4px_20px_rgba(0,0,0,0.28)]",
             "transition-all",
             "duration-500",
-            "cursor-pointer",
             showMobile
               ? "translate-y-0 opacity-100"
               : "-translate-y-2 opacity-0 pointer-events-none",
           ].join(" ")}
         >
-          {/* Top line */}
+          {/* Top gold line */}
           <div
             aria-hidden="true"
             className="
@@ -332,145 +340,108 @@ export default function ShopifyFlashCard({
               h-px
               bg-gradient-to-r
               from-transparent
-              via-emerald-400/40
+              via-[#f5c518]/45
               to-transparent
             "
           />
 
-          {/* =================================================
-              FIXED SHOPIFY ICON — LEFT
-          ================================================= */}
+          {/* ---------- DESKTOP: centered, fixed (no scroll) ---------- */}
+          <div className="hidden md:flex absolute inset-0 items-center justify-center px-14">
+            <Announcement href={href} />
+          </div>
 
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Open AIVA Shopify App"
-            className="
-              absolute
-              left-0
-              top-0
-              z-30
-              flex
-              h-[42px]
-              w-[48px]
-              shrink-0
-              items-center
-              justify-center
-              border-r
-              border-white/[0.07]
-              bg-[#08080d]/98
-              backdrop-blur-xl
-              cursor-pointer
-            "
-          >
-            <ShopifyIcon size="sm" />
-          </a>
-
-          {/* Left fade */}
-          <div
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              left-[48px]
-              top-0
-              bottom-0
-              z-20
-              w-7
-              bg-gradient-to-r
-              from-[#08080d]
-              to-transparent
-            "
-          />
-
-          {/* =================================================
-              MOVING TEXT AREA
-          ================================================= */}
-
-          <div
-            className="
-              absolute
-              left-[48px]
-              right-[90px]
-              top-0
-              bottom-0
-              overflow-hidden
-            "
-          >
+          {/* ---------- MOBILE: scrolling single line ---------- */}
+          <div className="md:hidden absolute inset-y-0 left-0 right-[44px] overflow-hidden">
             <MovingText href={href} />
           </div>
 
+          {/* Right fade (mobile only, under close button) */}
+          <div
+            aria-hidden="true"
+            className="
+              md:hidden
+              pointer-events-none
+              absolute
+              right-[44px]
+              top-0
+              bottom-0
+              z-20
+              w-8
+              bg-gradient-to-l
+              from-[#150e2e]
+              to-transparent
+            "
+          />
 
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View AIVA on Shopify"
+          {/* Close button — right */}
+          <button
+            type="button"
+            onClick={handleCloseBar}
+            aria-label="Dismiss announcement"
             className="
               absolute
               right-0
               top-0
               z-30
               flex
-              h-[42px]
-              w-[90px]
+              h-[44px]
+              w-[44px]
               items-center
               justify-center
-              gap-1
-              border-l
-              border-white/[0.07]
-              bg-[#08080d]/98
-              backdrop-blur-xl
-              text-[11px]
-              font-semibold
-              text-emerald-400
-              transition-all
+              text-white/50
+              transition-colors
               duration-200
-              hover:bg-emerald-400/[0.08]
-              hover:text-emerald-300
+              hover:text-white
               cursor-pointer
             "
           >
-            <span>Click here</span>
-
             <svg
               viewBox="0 0 24 24"
-              width="11"
-              height="11"
+              width="14"
+              height="14"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               strokeLinecap="round"
-              strokeLinejoin="round"
               aria-hidden="true"
             >
-              <path d="M5 12h14" />
-              <path d="m13 6 6 6-6 6" />
+              <path d="M6 6l12 12M18 6L6 18" />
             </svg>
-          </a>
-
-          {/* Right fade */}
-          <div
-            aria-hidden="true"
-            className="
-              pointer-events-none
-              absolute
-              right-[90px]
-              top-0
-              bottom-0
-              z-20
-              w-6
-              bg-gradient-to-l
-              from-[#08080d]
-              to-transparent
-            "
-          />
+          </button>
         </div>
       )}
     </>
   )
 }
+
+/* ===============================================================
+   ANNOUNCEMENT  —  single sentence: icon + text + Click here
+=============================================================== */
+
+function Announcement({ href }: { href: string }) {
+  return (
+    <div className="flex items-center gap-2.5 whitespace-nowrap text-[13.5px] leading-none text-white/90">
+      <ShopifyIcon size="sm" />
+      <span>
+        <span className="font-semibold text-[#f5c518]">Exciting News!</span>{" "}
+        AIVA is now live on the Shopify App Store
+      </span>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold text-[#f5c518] underline underline-offset-2 hover:text-[#ffd94a] cursor-pointer"
+      >
+        Click here
+      </a>
+      <span className="text-white/75">to add it to your store 🎉🚀</span>
+    </div>
+  )
+}
+
+/* ===============================================================
+   MOVING TEXT  —  mobile scroll, same sentence repeated
+=============================================================== */
 
 function MovingText({ href }: { href: string }) {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -484,8 +455,7 @@ function MovingText({ href }: { href: string }) {
 
     if (!track) return
 
-    // Speed in pixels per second
-    const speed = 35
+    const speed = 45 // px per second
 
     const animate = (time: number) => {
       if (lastTimeRef.current === null) {
@@ -499,17 +469,14 @@ function MovingText({ href }: { href: string }) {
 
       lastTimeRef.current = time
 
-      // Move continuously from right to left
       positionRef.current -= speed * delta
 
-      // First group width
       const firstGroup =
         track.firstElementChild as HTMLElement | null
 
       if (firstGroup) {
         const groupWidth = firstGroup.offsetWidth
 
-        // Seamless reset
         if (Math.abs(positionRef.current) >= groupWidth) {
           positionRef.current += groupWidth
         }
@@ -518,18 +485,15 @@ function MovingText({ href }: { href: string }) {
       track.style.transform =
         `translate3d(${positionRef.current}px, 0, 0)`
 
-      animationRef.current =
-        requestAnimationFrame(animate)
+      animationRef.current = requestAnimationFrame(animate)
     }
 
-    animationRef.current =
-      requestAnimationFrame(animate)
+    animationRef.current = requestAnimationFrame(animate)
 
     return () => {
       if (animationRef.current !== null) {
         cancelAnimationFrame(animationRef.current)
       }
-
       lastTimeRef.current = null
     }
   }, [])
@@ -540,119 +504,33 @@ function MovingText({ href }: { href: string }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="AIVA Shopify App"
-      className="
-        block
-        h-full
-        min-w-max
-        cursor-pointer
-      "
+      className="block h-full min-w-max cursor-pointer"
     >
       <div
         ref={trackRef}
-        className="
-          flex
-          h-full
-          min-w-max
-          items-center
-          whitespace-nowrap
-          will-change-transform
-        "
+        className="flex h-full min-w-max items-center whitespace-nowrap will-change-transform"
       >
-        {/* =====================================================
-            GROUP 1
-        ===================================================== */}
-
-        <div className="flex h-full shrink-0 items-center">
-          <MarqueeItem
-            title="AIVA is now live on Shopify"
-            subtitle="AI Video Shopping Advisor"
-          />
-
-          <MarqueeItem
-            title="Turn shoppers into conversations"
-            subtitle="Talk. Engage. Sell."
-          />
-
-          <MarqueeItem
-            title="Your AI sales agent, 24/7"
-            subtitle="Built for modern Shopify stores."
-          />
-        </div>
-
-        {/* =====================================================
-            GROUP 2
-            Duplicate = seamless infinite loop
-        ===================================================== */}
-
-        <div className="flex h-full shrink-0 items-center">
-          <MarqueeItem
-            title="AIVA is now live on Shopify"
-            subtitle="AI Video Shopping Advisor"
-          />
-
-          <MarqueeItem
-            title="Turn shoppers into conversations"
-            subtitle="Talk. Engage. Sell."
-          />
-
-          <MarqueeItem
-            title="Your AI sales agent, 24/7"
-            subtitle="Built for modern Shopify stores."
-          />
-        </div>
+        {/* Group 1 */}
+        <MarqueeSentence />
+        {/* Group 2 — duplicate for seamless loop */}
+        <MarqueeSentence />
       </div>
     </a>
   )
 }
 
-/* ===============================================================
-   MARQUEE ITEM
-=============================================================== */
-
-function MarqueeItem({
-  title,
-  subtitle,
-}: {
-  title: string
-  subtitle: string
-}) {
+function MarqueeSentence() {
   return (
-    <div
-      className="
-        flex
-        h-full
-        shrink-0
-        items-center
-        whitespace-nowrap
-        px-8
-      "
-    >
-      <span
-        className="
-          text-[12px]
-          font-medium
-          text-white/65
-        "
-      >
-        {title}
+    <div className="flex h-full shrink-0 items-center whitespace-nowrap pr-10 pl-4">
+      <span className="text-[12.5px] leading-none text-white/90">
+        <span className="font-semibold text-[#f5c518]">Exciting News!</span>{" "}
+        AIVA is now live on the Shopify App Store
       </span>
-
-      <span className="mx-2 text-white/20">
-        •
+      <span className="ml-2 text-[12.5px] font-semibold text-[#f5c518] underline underline-offset-2">
+        Click here
       </span>
-
-      <span
-        className="
-          text-[12px]
-          font-semibold
-          text-emerald-400
-        "
-      >
-        {subtitle}
-      </span>
-
-      <span className="mx-8 text-white/15">
-        •
+      <span className="ml-2 text-[12.5px] text-white/75">
+        to add it to your store 🎉🚀
       </span>
     </div>
   )
@@ -680,7 +558,7 @@ function ShopifyIcon({
         "bg-[linear-gradient(145deg,#9acb4c,#83b63b)]",
         "shadow-[0_8px_22px_rgba(149,191,71,0.15)]",
         small
-          ? "h-[28px] w-[28px] rounded-[8px]"
+          ? "h-[24px] w-[24px] rounded-[7px]"
           : "h-[44px] w-[44px] rounded-[11px]",
       ].join(" ")}
     >
@@ -691,7 +569,7 @@ function ShopifyIcon({
           "border",
           "border-white/[0.17]",
           small
-            ? "inset-px rounded-[7px]"
+            ? "inset-px rounded-[6px]"
             : "inset-px rounded-[10px]",
         ].join(" ")}
       />
@@ -699,8 +577,8 @@ function ShopifyIcon({
       {/* Shopify logo */}
       <svg
         viewBox="0 0 448 512"
-        width={small ? 15 : 22}
-        height={small ? 15 : 22}
+        width={small ? 13 : 22}
+        height={small ? 13 : 22}
         fill="#ffffff"
         aria-hidden="true"
       >
