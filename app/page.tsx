@@ -19,6 +19,7 @@ import { PricingSection } from "@/components/pricing-section";
 import { LandingPage } from "@/components/old-way-new-way";
 import { AiConversationInsightsSection } from "@/components/ai-conversation-insights";
 import ShopifyFlashCard from "@/components/shopify-flash-card";
+import { ShopifyCtaSection } from "@/components/shopify-cta-section";
 
 export default function HomePage() {
 
@@ -37,6 +38,9 @@ export default function HomePage() {
           </RevealOnScroll>
           <RevealOnScroll>
             <LandingPage />
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <ShopifyCtaSection />
           </RevealOnScroll>
           <RevealOnScroll>
             <SuperpowersSection />
